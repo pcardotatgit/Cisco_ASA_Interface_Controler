@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<!-- css generiques -->
+	<link rel="stylesheet" type="text/css" href="../static/inc/bootstrap/css/bootstrap.css" media="screen" title="style (screen)" />
+	
+<title>DEVICES TABLE</title>
+</head>
+<body>
+	<center><h1>DEVICE LIST</h1></center>
+			<hr>
+			<table><tbody><tr>
+			<td><center><a href="/devices">GO TO DEVICE LIST AND SELECT ONE </a></center></td>
+			<td><center>....</center></td>
+			<td><center><a href="/logout">LOGOUT</a></center></td>
+			</tr></tbody></table>
+			<hr>			
+			<center>
+			<table title="DEVICES" width="80%" cellpadding=0 cellspacing=0 border=1>
+			<tbody>		
+				{% for device in equipts %}
+				<tr><td>
+				{% if device.status=="up" %}
+				<center><br><form method="GET" action="/interfaces/{{device.name}}" class="form-inline" >
+		<button class="btn btn-success" type="submit">INTERFACE STATUS</i></button>
+	</form></center>
+				{% else %}
+				<center><img src="../static/images/delete.gif"></a></center></td>
+				{% endif %}
+				<td><center>{{device.index}}</a></td>
+				<td><A HREF = "	"><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{device.device_type}}</a></td><td><A HREF = ""><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{device.name}}</a></td>
+				
+				<td><A HREF = "	"><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{device.ip}}</a></td>
+				<td><A HREF = "	"><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{device.username}}</a></td>
+	<td><A HREF = "	"><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{device.password}}</a></td>
+	<td><A HREF = "	"><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{device.status}}</a></td>
+	</tr>	
+				{% endfor %}	
+			</tbody>
+			</table><br>
+			</center>				
+</body>
+</html>
+

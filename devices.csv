@@ -1,0 +1,5 @@
+device_type,name,ip,username,password,status
+cisco_asa,ASA1,192.168.100.1,patrick,cisco,up
+cisco_asa,ASA2,192.168.10.10,admin,password,down
+cisco_asa,ASA3,192.168.20.10,admin,cisco,down
+cisco_asa,ASA4,192.168.30.30,admin,cisco123,down

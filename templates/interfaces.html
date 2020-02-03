@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<!-- css generiques -->
+	<link rel="stylesheet" type="text/css" href="../static/inc/bootstrap/css/bootstrap.css" media="screen" title="style (screen)" />
+	
+<title>INTERFACE TABLE</title>
+</head>
+<body>
+	<center><h1>INTERFACE LIST FOR DEVICE {{device_name}}</h1></center>
+			<hr>
+			<table><tbody><tr>
+			<td><center><a href="/devices">GO TO DEVICE LIST AND SELECT ONE </a></center></td>
+			<td><center>....</center></td>
+			<td><center><a href="/logout">LOGOUT</a></center></td>
+			</tr></tbody></table>			
+			<hr>
+			<center>
+			<table title="INTERFACES" width="80%" cellpadding=0 cellspacing=0 border=1>
+			<tbody>		
+				{% for interface in interfaces %}
+				<tr><td>
+				{% if interface.state=="up" %}
+				<center><br><form method="GET" action="/interface_down/{{device_name}}/{{interface.interface}}" class="form-inline" >
+				<input type="hidden" name="device" value="{{device_name}}">
+		<button class="btn btn-success" type="submit">Switch to Down</i></button>
+	</form></center>
+				{% else %}
+				<center><br><form method="GET" action="/interface_up/{{device_name}}/{{interface.interface}}" class="form-inline" >
+				<input type="hidden" name="device" value="{{device_name}}">
+		<button class="btn btn-danger" type="submit">Switch to Up</button>
+	</form></center>
+				{% endif %}
+				</td>
+				<td><A HREF = "	"><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{interface.interface}}</a></td><td><A HREF = ""><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{interface.name}}</a></td>
+				
+				<td><A HREF = "	"><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{interface.line_protocol}}</a></td>
+				<td><A HREF = "	"><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{interface.mac}}</a></td>
+	<td><A HREF = "	"><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{interface.ip}}</a></td>
+	<td><A HREF = "	"><IMG SRC = "../static/images/img_pagination_next.gif" BORDER = "0">{{interface.mask}}</a></td>
+	</tr>	
+				{% endfor %}	
+			</tbody>
+			</table><br>
+			</center>				
+</body>
+</html>
+
