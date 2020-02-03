@@ -1,4 +1,4 @@
-"# Cisco_ASA_Interface_Controler" 
+# Cisco_ASA_Interface_Controler
 
 This python flask application is an example of a tiny controler for Cisco ASA devices ( or anyother Cisco devices ).
 
@@ -7,18 +7,18 @@ This challenge gather almost all knowledge people acquired during the Python Tra
 This challenge is called : Create a Web Controler to manage our device's interfaces
 
 - Create a sqli table named user.db with the following fields :
-	username
-	password
+	- username
+	- password
 
-Add into it at least one users and it's password
+	Add into it at least one users and it's password
 	
 - Create a sqli table named devices with the following fields :
-	device_type
-	name
-	IP
-	username
-	password
-	state
+	- device_type
+	- name
+	- IP
+	- username
+	- password
+	- state
 
 - Create a second table named interfaces with the following fields :
 
@@ -38,14 +38,10 @@ Add into it at least one users and it's password
 - When you select a device you should display a table with all it's interfaces characteristics. If the Interface is UP display a Green Button, and it the interface is down/administratively down display a Red Button.
 - You should be able to change interface status just by clicking on it's Button
 
-ABOUT THE SUGGESTED SOLUTION
+# ABOUT THE SUGGESTED SOLUTION
 
-Everything is stored into sqlite database.  You must use username = patrick and password = cisco 
-
-Login, and then select [ GO TO DEVICE LIST AND SELECT ONE ]. Select your device and display it's interface's statuses
-
-The users_list.py script allows you to display the user list contained into users.db
-
-The add_devices_to_sqllite_db.py script allows you to add devices into the devices.db from the CSV file names devices.csv
-
-The devices_list.py script allows you to display the device list contained into the devices.db.
+- Everything is stored into sqlite database.  You must use username = patrick and password = cisco 
+- Login, and then select [ GO TO DEVICE LIST AND SELECT ONE ]. Select your device and display it's interface's statuses
+- The users_list.py script allows you to display the user list contained into users.db
+- The add_devices_to_sqllite_db.py script allows you to add devices into the devices.db from the CSV file names devices.csv
+- The devices_list.py script allows you to display the device list contained into the devices.db.
