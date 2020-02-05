@@ -44,4 +44,5 @@ This challenge is called : Create a Web Controler to manage our device's interfa
 - Login, and then select [ GO TO DEVICE LIST AND SELECT ONE ]. Select your device and display it's interface's statuses
 - The users_list.py script allows you to display the user list contained into users.db
 - The add_devices_to_sqllite_db.py script allows you to add devices into the devices.db from the CSV file named devices.csv
-- The devices_list.py script allows you to display the device list contained into the devices.db.
+- The devices_list.py script allows you to display the device list contained into the devices.db
+- The add_users.py script allows you to add users into the users.db
