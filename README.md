@@ -47,6 +47,6 @@ This challenge is called : Create a Web Controler to manage our device's interfa
 - The devices_list.py script allows you to display the device list contained into the devices.db
 - The add_users.py script allows you to add users into the users.db
 
-In addition, this application generate a JSON output file name ** interfaces.csv ** in the ** out **  folder
+In addition, this application generate a JSON output file name **interfaces.csv** in the **out**  folder
 
-This file can be accessed directly without any authentication thru the following path ** http://{server_ip_address}/out**
+This file can be accessed directly without any authentication thru the following path **http://{server_ip_address}/out**
