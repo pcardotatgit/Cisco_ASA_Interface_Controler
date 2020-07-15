@@ -38,6 +38,45 @@ This challenge is called : Create a Web Controler to manage our device's interfa
 - When you select a device you should display a table with all it's interfaces characteristics. If the Interface is UP display a Green Button, and it the interface is down/administratively down display a Red Button.
 - You should be able to change interface status just by clicking on it's Button
 
+## Installation
+
+Installing these scripts is pretty straight forward . You can just copy / and paste them into you python environment but a good practice is to run them into a python virtual environment.
+
+### Install a Python virtual environment
+
+	For Linux/Mac 
+
+	python3 -m venv venv
+	source bin activate
+
+	For Windows 
+	
+	We assume that you already have installed git-bash.  If so open a git-bash console and :
+
+	ptyhon -m venv etid_venv 
+	source /etid_venv/Scripts/activate
+
+### git clone the scripts
+
+	git clone https://github.com/pcardotatgit/Cisco_ASA_Interface_Controler.git
+	cd Cisco_ASA_Interface_Controler/
+	
+### install needed modules
+
+This controler uses the following modules
+
+- SQLAlchemy
+- pandas
+- sqlite
+- csv
+- netmiko
+- Flask
+- simplejson
+
+you can install them with the following  :
+	
+	pip install -r requirements.txt
+
 # ABOUT THIS SUGGESTED SOLUTION
 
 - Everything is stored into sqlite database.  You must use username = patrick and password = cisco 
