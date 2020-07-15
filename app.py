@@ -1,19 +1,21 @@
 # -*- coding: UTF-8 -*-
 from flask import Flask
-from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
+from flask import Flask, flash, redirect, render_template, request, session, abort
 import os
 from sqlalchemy.orm import sessionmaker
 from tabledef import *
 import sqlite3
 from netmiko import ConnectHandler
 import sys
+import csv
+import json
 engine = create_engine('sqlite:///users.db', echo=True)
 
-def select_device(name):
+def select_device(id):
 	device=[]
 	with sqlite3.connect("devices.db") as conn:
 		cursor=conn.cursor()
-		sql_request = "SELECT * from devices where name = '" + name +"'"
+		sql_request = "SELECT * from devices where id = 0"
 		cursor.execute(sql_request)		
 		for resultat in cursor:
 			#print(resultat)		
@@ -182,7 +184,7 @@ def devices_list():
 			for resultat in cursor:
 				#print(resultat)	
 				device = {
-					'index': resultat[0],
+					'id': resultat[0],
 					'device_type': resultat[1],
 					'name': resultat[2],
 					'ip': resultat[3],
@@ -198,9 +200,9 @@ def devices_list():
 	else:
 		return render_template('deny.html',USERNAME=session['user'])		
  
-@app.route('/interfaces/<name>')
-def interfaces_list(name): 
-	device = select_device(name)
+@app.route('/interfaces/<id>')
+def interfaces_list(id): 
+	device = select_device(id)
 	net_connect = ConnectHandler(**device)
 	net_connect.find_prompt()
 	output = net_connect.send_command("show interface")
@@ -223,10 +225,10 @@ def interfaces_list(name):
 	result=result.replace("line protocol is ","")
 	result=result.replace("is ","")
 	result=result.replace("subnet mask ","")
-	result=result.replace("1 minute","<br>1 minute")
-	
+	result=result.replace("1 minute","<br>1 minute")	
 	lignes = result.split('<br>')
 	interfaces=[]
+	fh = open("./out/interfaces.csv", "w")
 	for ligne in lignes:
 		if len(ligne) > 5:
 			if(ligne.find('input')<0):
@@ -241,31 +243,33 @@ def interfaces_list(name):
 					'ip':mots[5],
 					'mask':mots[6]
 				}
-				interfaces.append(interface)
-	return render_template('interfaces.html',interfaces=interfaces,device_name=name)
+				interfaces.append(interface) 
+				ligne_out=motsB[1]+';'+motsB[2]+';'+mots[1]+';'+mots[2]+';'+mots[3]+';'+mots[3]+';'+mots[5]+';'+mots[6]
+				fh.write(ligne_out)
+				fh.write('\n')
+	fh.close()
+	return render_template('interfaces.html',interfaces=interfaces)
 	
-@app.route('/interface_up/<device_name>/<name>/<number>')
-def interface_up(name,number,device_name): 	
-	device = select_device(device_name)
-	net_connect = ConnectHandler(**device)
-	net_connect.find_prompt()
-	command1="interface "+ name +'/'+number
-	command2="no shutdown"
-	config_commands = [command1,command2] 
-	output = net_connect.send_config_set(config_commands)
-	return redirect(url_for('interfaces_list',name=device_name))
+@app.route('/out')
+def out():
+	file='./out/interfaces.csv'
+	lines=[]
+	interface_list=[]
+	with open (file) as csvfile:
+		lines = csv.reader(csvfile, delimiter=';')
+		for row in lines:
+			payload = {
+				"interface":row[0],
+				"interface_name":row[1],
+				"status":row[2],
+				"mac":row[3],
+				"ip_addr":row[4],
+				"mask":row[5]
+			}		
+			interface_list.append(payload)
+	result=json.dumps(interface_list)
+	return result
 	
-@app.route('/interface_down/<device_name>/<name>/<number>')
-def interface_down(name,number,device_name): 	
-	device = select_device(device_name)
-	net_connect = ConnectHandler(**device)
-	net_connect.find_prompt()
-	command1="interface "+ name +'/'+number
-	command2="shutdown"
-	config_commands = [command1,command2] 
-	output = net_connect.send_config_set(config_commands)
-	new_url='/interfaces/'+device_name
-	return redirect(url_for('interfaces_list',name=device_name))
 	
 if __name__ == "__main__":
 	app.secret_key = os.urandom(12)

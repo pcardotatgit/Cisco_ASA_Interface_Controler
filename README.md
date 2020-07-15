@@ -38,7 +38,7 @@ This challenge is called : Create a Web Controler to manage our device's interfa
 - When you select a device you should display a table with all it's interfaces characteristics. If the Interface is UP display a Green Button, and it the interface is down/administratively down display a Red Button.
 - You should be able to change interface status just by clicking on it's Button
 
-# ABOUT THE SUGGESTED SOLUTION
+# ABOUT THIS SUGGESTED SOLUTION
 
 - Everything is stored into sqlite database.  You must use username = patrick and password = cisco 
 - Login, and then select [ GO TO DEVICE LIST AND SELECT ONE ]. Select your device and display it's interface's statuses
@@ -46,3 +46,7 @@ This challenge is called : Create a Web Controler to manage our device's interfa
 - The add_devices_to_sqllite_db.py script allows you to add devices into the devices.db from the CSV file named devices.csv
 - The devices_list.py script allows you to display the device list contained into the devices.db
 - The add_users.py script allows you to add users into the users.db
+
+In addition, this application generate a JSON output file name ** interfaces.csv ** in the ** out **  folder
+
+This file can be accessed directly without any authentication thru the following path ** http://{server_ip_address}/out**
