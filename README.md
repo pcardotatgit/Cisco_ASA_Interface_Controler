@@ -40,7 +40,7 @@ This challenge is called : Create a Web Controler to manage our device's interfa
 
 ## Installation
 
-Installing these scripts is pretty straight forward . You can just copy / and paste them into you python environment but a good practice is to run them into a python virtual environment.
+Installing these scripts is pretty straight forward . You can just copy / and paste them into your python environment but a good practice is to run them into a python virtual environment.
 
 ### Install a Python virtual environment
 
@@ -53,8 +53,8 @@ Installing these scripts is pretty straight forward . You can just copy / and pa
 	
 	We assume that you already have installed git-bash.  If so open a git-bash console and :
 
-	ptyhon -m venv etid_venv 
-	source /etid_venv/Scripts/activate
+	python -m venv etid_venv 
+	etid_venv/Scripts/activate
 
 ### git clone the scripts
 
