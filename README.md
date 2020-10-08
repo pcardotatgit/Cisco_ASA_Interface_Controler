@@ -44,14 +44,14 @@ Installing these scripts is pretty straight forward . You can just copy / and pa
 
 ### Install a Python virtual environment
 
-	For Linux/Mac 
+**For Linux/Mac**
 
 	python3 -m venv venv
 	source bin activate
 
-	For Windows 
+**For Windows**
 	
-	We assume that you already have installed git-bash.  If so open a git-bash console and :
+We assume that you already have installed git-bash.  If so open a git-bash console and :
 
 	python -m venv etid_venv 
 	etid_venv/Scripts/activate
